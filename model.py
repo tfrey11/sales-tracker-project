@@ -34,7 +34,7 @@ class Sale(db.Model):
     car_model = db.Column(db.String)
     car_year = db.Column(db.Integer)
     sell_price = db.Column(db.Integer)
-    sale_date = db.Column(db.Datetime)
+    sale_date = db.Column(db.DateTime)
 
     customers = db.relationship("Customer", back_populates="sales")
     salesperson = db.relationship("Salesperson", back_populates="sales")
@@ -58,4 +58,18 @@ class Customer(db.Model):
     def __repr__(self):
         return f"<Customer customer_id={self.id} customer_name={self.customer_fname} {self.customer_lname}>"
     
-    
+
+def connect_to_db(flask_app, db_uri="postgresql:///salesdata", echo=True):
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    flask_app.config["SQLALCHEMY_ECHO"] = echo
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
+
+if __name__ == "__main__":
+    from server import app
+
+    connect_to_db(app)
