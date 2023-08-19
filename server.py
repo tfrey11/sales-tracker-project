@@ -1,0 +1,1 @@
+"""Server for sales tracker app"""
