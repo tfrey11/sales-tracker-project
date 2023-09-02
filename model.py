@@ -13,10 +13,10 @@ class Salesperson(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     fname = db.Column(db.String)
     lname = db.Column(db.String)
-    username = db.Column(db.String, unique=True)
+    username = db.Column(db.String)
     password = db.Column(db.String)
 
-    sales = db.relationship("Sale", back_populates="salespeople")
+    sales = db.relationship("Sale", back_populates="salesperson")
 
 
     def __repr__(self):
@@ -36,7 +36,7 @@ class Sale(db.Model):
     sell_price = db.Column(db.Integer)
     sale_date = db.Column(db.DateTime)
 
-    customers = db.relationship("Customer", back_populates="sales")
+    customers = db.relationship("Customer", back_populates="purchases")
     salesperson = db.relationship("Salesperson", back_populates="sales")
 
     def __repr__(self):
@@ -53,7 +53,7 @@ class Customer(db.Model):
     customer_email = db.Column(db.String)
     customer_phone_number = db.Column(db.String)
 
-    purchases = db.relationship("Sales", back_populates="customers")
+    purchases = db.relationship("Sale", back_populates="customers")
 
     def __repr__(self):
         return f"<Customer customer_id={self.id} customer_name={self.customer_fname} {self.customer_lname}>"

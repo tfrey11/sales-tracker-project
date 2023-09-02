@@ -14,6 +14,13 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     return render_template('homepage.html')
 
+@app.route('/login', methods=["POST"])
+def login():
+
+@app.route('/register', methods=["POST"])
+def register_user():
+    
+
 
 
 
