@@ -22,6 +22,15 @@ class Salesperson(db.Model):
     def __repr__(self):
         return f"<Salesperson id={self.id} name={self.fname} {self.lname}>"
     
+    @classmethod
+    def create(cls, fname, lname, username, password):
+        """create and return a new salesperson"""
+        return cls(fname=fname, lname=lname, username=username, password=password)
+    
+    @classmethod
+    def get_salesperson_by_username(cls, username):
+        return cls.query.filter(Salesperson.username == username).first()
+    
 class Sale(db.Model):
     """A sale"""
 
@@ -33,7 +42,7 @@ class Sale(db.Model):
     car_make = db.Column(db.String)
     car_model = db.Column(db.String)
     car_year = db.Column(db.Integer)
-    sell_price = db.Column(db.Integer)
+    sell_price = db.Column(db.Float)
     sale_date = db.Column(db.DateTime)
 
     customers = db.relationship("Customer", back_populates="purchases")

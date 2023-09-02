@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{user.fname}}'s Dashboard{% endblock %}
+
+{% block body %}
+<h1>Hello, {{user.fname}}</h1>
+
+<form action="/create_sale" id="sale_form" method="POST">
+    <input type="text" name="customer_fname" placeholder="Customer First Name">
+    <input type="text" name="customer_lname" placeholder="Customer Last Name">
+    <input type="email" name="customer_email" placeholder="Customer Email">
+    <input type="text" name="customer_pnumber" placeholder="Customer Phone Number">
+    <input type="text" name="car_make" placeholder="Car Make">
+    <input type="text" name="car_model" placeholder="Car Model">
+    <input type="text" name="car_year" placeholder="Year">
+    <input type="text" name="price" placeholder="Selling Price">
+    <input type="date" name="date" placeholder="Date">
+    <input type="submit" value="New Sale" id="log_sale">
+
+</form>
+{% endblock %}
