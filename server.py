@@ -14,6 +14,17 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     return render_template("homepage.html")
 
+@app.route("/user_dashboard")
+def user_dashboard():
+    if session["sp_email"]:
+        salesperson = crud.get_salesperson_by_username(session["sp_email"])
+        sales_list = crud.get_salesperson_sales(salesperson.id)
+        sales_total = 0
+        for sale in sales_list:
+            sales_total +=1
+
+    return render_template("user_dashboard.html", user = salesperson, sales= sales_total)
+
 @app.route("/login", methods=["POST"])
 def login():
     """allow user to login"""
@@ -28,14 +39,9 @@ def login():
 
     else:
         session["sp_email"] = salesperson.username
-        sales_list = crud.get_salesperson_sales(salesperson.id)
-        total = 0
-        for sale in sales_list:
-            total +=1
-
         flash(f"Welcome back, {salesperson.fname}")
 
-    return render_template("user_dashboard.html", user=salesperson, sales = total)
+    return redirect("/")
 
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -61,6 +67,7 @@ def register_user():
 
 @app.route("/create_sale", methods=["POST"])
 def create_sale():
+    
     return render_template("user_dashboard.html")
 
 @app.route("/create_customer", methods=["POST"])
@@ -70,7 +77,13 @@ def create_customer():
     email = request.form.get("customer_email")
     phone_num = request.form.get("customer_pnumber")
 
-    return render_template("user_dashboard.html")
+    new_customer = crud.create_customer(fname, lname, email, phone_num)
+    db.session.add(new_customer)
+    db.session.commit()
+    flash("Customer added")
+
+    return redirect("/user_dashboard")
+    
 
 
 if __name__ == "__main__":
