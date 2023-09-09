@@ -1,7 +1,8 @@
 """CRUD operations for db"""
 
-from datetime import datetime
+from datetime import datetime, date
 from model import db, Salesperson, Sale, Customer, connect_to_db
+from sqlalchemy import func
 
 def create_salesperson(first_name, last_name, email, pword,):
     """create and return a new salesperson"""
@@ -51,8 +52,8 @@ def get_customer_by_id(c_id):
 def get_customer_id(email):
     return Customer.query.filter(Customer.customer_email == email).first()
 
-def get_sales_by_month(date, id):
-    return Sale.query.filter(Sale.sale_date > date, Sale.sales_person_id == id).all()
+def get_sales_by_month(month, year,  id):
+    return Sale.query.filter(func.extract('month', Sale.sale_date) == month,func.extract('year', Sale.sale_date) == year, Sale.sales_person_id == id).all()
 
 
 

@@ -2,6 +2,7 @@
 
 from flask import (Flask, render_template, request, flash, session, redirect)
 from model import db, Salesperson, Sale, Customer, connect_to_db
+from datetime import date
 
 import crud
 from jinja2 import StrictUndefined
@@ -19,11 +20,18 @@ def user_dashboard():
     if session["sp_email"]:
         salesperson = crud.get_salesperson_by_username(session["sp_email"])
         sales_list = crud.get_salesperson_sales(salesperson.id)
+        t_date = date.today()
+        month= t_date.month
+        year = t_date.year
+        month_list = crud.get_sales_by_month( month, year, salesperson.id)
+        month_sales= 0
+        for s in month_list:
+            month_sales += 1
         sales_total = 0
         for sale in sales_list:
             sales_total +=1
 
-    return render_template("user_dashboard.html", user = salesperson, sales= sales_total)
+    return render_template("user_dashboard.html", user = salesperson, sales= sales_total, monthly_sales = month_sales)
 
 @app.route("/login", methods=["POST"])
 def login():

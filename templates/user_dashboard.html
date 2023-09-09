@@ -4,6 +4,7 @@
 {% block body %}
 <h1>Hello, {{user.fname}}</h1>
 <h2>Total Sales : {{sales}} </h2>
+<h2>Sales This Month: {{monthly_sales}}</h2>
 <form action="/create_customer" id="customer_form" method="POST">
     <input type="text" name="customer_fname" placeholder="Customer's First Name">
     <input type="text" name="customer_lname" placeholder="Customer's Last Name">
