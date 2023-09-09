@@ -67,6 +67,7 @@ class Customer(db.Model):
     def __repr__(self):
         return f"<Customer customer_id={self.id} customer_name={self.customer_fname} {self.customer_lname}>"
     
+    
 
 def connect_to_db(flask_app, db_uri="postgresql:///salesdata", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri

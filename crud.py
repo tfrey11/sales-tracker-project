@@ -31,6 +31,10 @@ def get_sales():
 
     return Sale.query.all()
 
+def get_salesperson_sales(seller_id):
+    """return all sales by specific salesperson"""
+    return Sale.query.filter(Sale.sales_person_id == seller_id)
+
 def create_customer(fname, lname, email, pnumber):
     """Create and return new customer"""
 

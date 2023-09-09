@@ -28,9 +28,14 @@ def login():
 
     else:
         session["sp_email"] = salesperson.username
+        sales_list = crud.get_sales(salesperson.id)
+        total = 0
+        for sale in sales_list:
+            total +=1
+
         flash(f"Welcome back, {salesperson.fname}")
 
-    return render_template("user_dashboard.html", user=salesperson)
+    return render_template("user_dashboard.html", user=salesperson, sales = total)
 
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -58,6 +63,14 @@ def register_user():
 def create_sale():
     return render_template("user_dashboard.html")
 
+@app.route("/create_customer", methods=["POST"])
+def create_customer():
+    fname = request.form.get("customer_fname")
+    lname = request.form.get("customer_lname")
+    email = request.form.get("customer_email")
+    phone_num = request.form.get("customer_pnumber")
+
+    return render_template("user_dashboard.html")
 
 
 if __name__ == "__main__":
