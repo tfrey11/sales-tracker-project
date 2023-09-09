@@ -43,7 +43,7 @@ class Sale(db.Model):
     car_model = db.Column(db.String)
     car_year = db.Column(db.Integer)
     sell_price = db.Column(db.Float)
-    sale_date = db.Column(db.DateTime)
+    sale_date = db.Column(db.Date)
 
     customers = db.relationship("Customer", back_populates="purchases")
     salesperson = db.relationship("Salesperson", back_populates="sales")

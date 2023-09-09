@@ -67,8 +67,21 @@ def register_user():
 
 @app.route("/create_sale", methods=["POST"])
 def create_sale():
-    
-    return render_template("user_dashboard.html")
+    c_email = request.form.get("customer_email")
+    cus= crud.get_customer_id(c_email)
+    seller = crud.get_salesperson_by_username(session["sp_email"])
+    make = request.form.get("car_make")
+    model = request.form.get("car_model")
+    year = request.form.get("car_year")
+    price = request.form.get("price")
+    date = request.form.get("date")
+
+    new_sale = crud.create_sale(seller.id, cus.id, make, model, year, price, date)
+    db.session.add(new_sale)
+    db.session.commit()
+    flash("New Sale Added!")
+    return redirect("user_dashboard")
+
 
 @app.route("/create_customer", methods=["POST"])
 def create_customer():

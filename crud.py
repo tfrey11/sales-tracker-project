@@ -48,6 +48,13 @@ def get_customer_by_id(c_id):
 
     return Customer.query.filter(Customer.id == c_id).first()
 
+def get_customer_id(email):
+    return Customer.query.filter(Customer.customer_email == email).first()
+
+def get_sales_by_month(date, id):
+    return Sale.query.filter(Sale.sale_date > date, Sale.sales_person_id == id).all()
+
+
 
 
 
