@@ -28,7 +28,7 @@ def login():
 
     else:
         session["sp_email"] = salesperson.username
-        sales_list = crud.get_sales(salesperson.id)
+        sales_list = crud.get_salesperson_sales(salesperson.id)
         total = 0
         for sale in sales_list:
             total +=1
