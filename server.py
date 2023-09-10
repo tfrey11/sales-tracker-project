@@ -1,8 +1,9 @@
 """Server for sales tracker app"""
 
-from flask import (Flask, render_template, request, flash, session, redirect)
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import db, Salesperson, Sale, Customer, connect_to_db
 from datetime import date
+from operator import itemgetter
 
 import crud
 from jinja2 import StrictUndefined
@@ -109,6 +110,31 @@ def create_customer():
 
     return redirect("/user_dashboard")
     
+@app.route("/sales_this_month_user.json")
+def get_sales_this_month():
+    """get the sales this month for specific user"""
+    monthly_sales = {}
+    monthly_sales_list = []
+    salesperson = crud.get_salesperson_by_username(session["sp_email"])
+    t_date = date.today()
+    month= t_date.month
+    year = t_date.year
+    month_list = crud.get_sales_by_month( month, year, salesperson.id)
+
+    for sale in month_list:
+        s_date = sale.sale_date
+        if s_date not in monthly_sales:
+            monthly_sales[s_date]=1
+        else:
+            monthly_sales[s_date] += 1
+    
+    for key in monthly_sales:
+        monthly_sales_list.append({'date': key.isoformat(), 'total': monthly_sales[key]})
+
+    monthly_sales_list.sort(key= lambda x:x['date'])
+
+    return jsonify({'data': monthly_sales_list})
+
 
 
 if __name__ == "__main__":
