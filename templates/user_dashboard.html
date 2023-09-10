@@ -2,7 +2,10 @@
 {% block title %}{{user.fname}}'s Dashboard{% endblock %}
 
 {% block body %}
-<h1>Hello, {{user.fname}}</h1>
+<div class="text-center">
+    <h1>Hello, {{user.fname}}</h1>
+</div>
+
 <h2>Total Sales : {{sales}} </h2>
 <h2>Sales This Month: {{monthly_sales}}</h2>
 <form action="/create_customer" id="customer_form" method="POST">

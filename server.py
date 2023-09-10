@@ -15,6 +15,10 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     return render_template("homepage.html")
 
+@app.route("/dealer_page")
+def dealer_page():
+    return render_template("dealer_page.html")
+
 @app.route("/user_dashboard")
 def user_dashboard():
     if session["sp_email"]:

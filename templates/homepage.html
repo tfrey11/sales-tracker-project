@@ -2,18 +2,38 @@
 {% block title %}Log In Page{% endblock %}
 
 {% block body %}
+<div class="text-center">
+    <h1>Welcome to the Sales Tracker</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <form action="/login" method="POST" id="Log-In" style="border: 2cm;">
+                <div class="row"> 
+                    <label for="username" style="font-weight: bolder;">Username:</label>
+                    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email"> 
+                </div>
+                <div class="row">
+                    <label for="password" style="font-weight: bolder;">Password:</label>
+                    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+                </div>
+                <div class="row">
+                    <input type="submit" value="Login" id="login-form-submit" style="font-weight: bolder;">
+                </div>
+                
+            </form>
+        </div>
+        <div class="col-6">
+            <form action="register" method="POST" id="New-User">
+                <input type="text" name="new-username" id="new-username-field" class="new-user-field" placeholder="Email">
+                <input type="password" name="new-password" id="new-password-field" class="new-user-field" placeholder="Password">
+                <input type="text" name="fname" id="new-fname-field" class="new-user-field" placeholder="First Name">
+                <input type="text" name="lname" id="new-lname-field" class="new-user-field" placeholder="Last Name">
+                <input type="submit" value="Create" id="new-user-submit">
+            </form>
+        </div>
+    </div>
+</div>
 
-<form action="/login" method="POST" id="Log-In">
-    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email">
-    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-    <input type="submit" value="Login" id="login-form-submit">
-</form>
 
-<form action="register" method="POST" id="New-User">
-    <input type="text" name="new-username" id="new-username-field" class="new-user-field" placeholder="Email">
-    <input type="password" name="new-password" id="new-password-field" class="new-user-field" placeholder="Password">
-    <input type="text" name="fname" id="new-fname-field" class="new-user-field" placeholder="First Name">
-    <input type="text" name="lname" id="new-lname-field" class="new-user-field" placeholder="Last Name">
-    <input type="submit" value="Create" id="new-user-submit">
-</form>
 {% endblock %}
