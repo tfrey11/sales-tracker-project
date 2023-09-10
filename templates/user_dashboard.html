@@ -5,34 +5,47 @@
 <div class="text-center">
     <h1>Hello, {{user.fname}}</h1>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h2>Total Sales : {{sales}} </h2>
+            <h2>Sales This Month: {{monthly_sales}}</h2>
+            <canvas id="month_sales_chart"></canvas>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <form action="/create_customer" id="customer_form" method="POST">
+                    <input type="text" name="customer_fname" placeholder="Customer's First Name">
+                    <input type="text" name="customer_lname" placeholder="Customer's Last Name">
+                    <input type="text" name="customer_email" placeholder="Customer's Email">
+                    <input type="text" name="customer_pnumber" placeholder="000-000-0000">
+                    <input type="submit" value="New Customer" id="log_customer">
+                </form>
+            </div>
+            <div class="row">
+                <form action="/create_sale" id="sale_form" method="POST">
+                    <input type="email" name="customer_email" placeholder="Customer Email">
+                    <input type="text" name="car_make" placeholder="Car Make">
+                    <input type="text" name="car_model" placeholder="Car Model">
+                    <input type="text" name="car_year" placeholder="Year">
+                    <input type="text" name="price" placeholder="Selling Price">
+                    <input type="date" name="date" placeholder="Date">
+                    <input type="submit" value="New Sale" id="log_sale">
+                
+                </form>
+            </div>
+        </div>
 
-<h2>Total Sales : {{sales}} </h2>
-<h2>Sales This Month: {{monthly_sales}}</h2>
-<form action="/create_customer" id="customer_form" method="POST">
-    <input type="text" name="customer_fname" placeholder="Customer's First Name">
-    <input type="text" name="customer_lname" placeholder="Customer's Last Name">
-    <input type="text" name="customer_email" placeholder="Customer's Email">
-    <input type="text" name="customer_pnumber" placeholder="000-000-0000">
-    <input type="submit" value="New Customer" id="log_customer">
-</form>
-<form action="/create_sale" id="sale_form" method="POST">
-    <input type="email" name="customer_email" placeholder="Customer Email">
-    <input type="text" name="car_make" placeholder="Car Make">
-    <input type="text" name="car_model" placeholder="Car Model">
-    <input type="text" name="car_year" placeholder="Year">
-    <input type="text" name="price" placeholder="Selling Price">
-    <input type="date" name="date" placeholder="Date">
-    <input type="submit" value="New Sale" id="log_sale">
-
-</form>
+    </div>
+</div>
 
 
 
-<div class="row"> 
+<!-- <div class="row"> 
     <div class="col-6">
         <canvas id="month_sales_chart"></canvas>
     </div>
-</div>  
+</div>   -->
     <script src="/static/js/userChart.js"></script>
 
 {% endblock %}
