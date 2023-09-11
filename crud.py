@@ -4,6 +4,7 @@ from datetime import datetime, date
 from model import db, Salesperson, Sale, Customer, connect_to_db
 from sqlalchemy import func
 
+
 def create_salesperson(first_name, last_name, email, pword,):
     """create and return a new salesperson"""
     salesperson = Salesperson(fname=first_name, lname=last_name, username=email, password=pword )
@@ -55,6 +56,12 @@ def get_customer_id(email):
 def get_sales_by_month(month, year,  id):
     return Sale.query.filter(func.extract('month', Sale.sale_date) == month,func.extract('year', Sale.sale_date) == year, Sale.sales_person_id == id).all()
 
+def get_dealer_sales():
+    t_date = date.today()
+    month = t_date.month
+    year = t_date.year
+
+    return Sale.query.filter(func.extract('month', Sale.sale_date) == month, func.extract('year', Sale.sale_date) == year).all()
 
 
 

@@ -4,12 +4,12 @@ from flask import (Flask, render_template, request, flash, session, redirect, js
 from model import db, Salesperson, Sale, Customer, connect_to_db
 from datetime import date
 from operator import itemgetter
-
+import os
 import crud
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
-app.secret_key = "dev"
+app.secret_key = os.environ['SECRET_KEY']
 app.jinja_env.undefined = StrictUndefined
 
 @app.route("/")
@@ -18,7 +18,12 @@ def homepage():
 
 @app.route("/dealer_page")
 def dealer_page():
-    return render_template("dealer_page.html")
+    total_sales_list = crud.get_sales()
+    sales_this_month_list = crud.get_dealer_sales()
+    t_sales = len(total_sales_list)
+    m_sales = len(sales_this_month_list)
+
+    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales)
 
 @app.route("/user_dashboard")
 def user_dashboard():
@@ -145,6 +150,23 @@ def get_sales_this_month():
 
     return jsonify({'data': monthly_sales_list})
 
+@app.route("/sales_this_month_dealer.json")
+def dealer_sales():
+    dealer_sales = crud.get_dealer_sales()
+    monthly_sales = {}
+    monthly_sales_list = []
+    for sale in dealer_sales:
+        s_date = sale.sale_date
+        if s_date not in monthly_sales:
+            monthly_sales[s_date] = 1
+        else:
+            monthly_sales[s_date]+=1
+    for key in monthly_sales:
+        monthly_sales_list.append({'date': key.isoformat(), 'total': monthly_sales[key]})
+
+    monthly_sales_list.sort(key= lambda x:x['date'])
+
+    return jsonify({'data': monthly_sales_list})
 
 
 if __name__ == "__main__":
