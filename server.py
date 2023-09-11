@@ -22,8 +22,9 @@ def dealer_page():
     sales_this_month_list = crud.get_dealer_sales()
     t_sales = len(total_sales_list)
     m_sales = len(sales_this_month_list)
+    api_k = os.environ['API_KEY']
 
-    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales)
+    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales, the_key=api_k)
 
 @app.route("/user_dashboard")
 def user_dashboard():
