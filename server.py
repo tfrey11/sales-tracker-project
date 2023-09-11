@@ -22,7 +22,9 @@ def dealer_page():
 
 @app.route("/user_dashboard")
 def user_dashboard():
-    if session["sp_email"]:
+    if not session:
+        return redirect('/')
+    else:
         salesperson = crud.get_salesperson_by_username(session["sp_email"])
         sales_list = crud.get_salesperson_sales(salesperson.id)
         t_date = date.today()
@@ -36,7 +38,10 @@ def user_dashboard():
         for sale in sales_list:
             sales_total +=1
 
-    return render_template("user_dashboard.html", user = salesperson, sales= sales_total, monthly_sales = month_sales)
+        return render_template("user_dashboard.html", user = salesperson, sales= sales_total, monthly_sales = month_sales)
+ 
+
+    
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -77,6 +82,11 @@ def register_user():
         flash("Account created! Please login to see your dashboard")
 
     return redirect('/')
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 @app.route("/create_sale", methods=["POST"])
 def create_sale():

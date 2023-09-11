@@ -2,55 +2,66 @@
 {% block title %}Log In Page{% endblock %}
 
 {% block body %}
+<div class="wrapper">
+    
 
-<div class="text-center">
-    <h1>Welcome to the Sales Tracker</h1>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="card border-dark col-5">
-            <form action="/login" method="POST" id="Log-In" >
-                <div class="row"> 
-
-                </div>
-                <div class="row"> 
-                    <label for="username" style="font-weight: bolder;">Username:</label>
-                    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email"> 
-                </div>
-                <div class="row">
-                    <label for="password" style="font-weight: bolder;">Password:</label>
-                    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-                </div>
-                <div class="row">
-                    <input type="submit" class="btn btn-primary" value="Login" id="login-form-submit" style="font-weight: bolder;">
-                </div>
-                
-            </form>
+        <div class="text-center">
+            <h1>Welcome to the Sales Tracker App</h1>
         </div>
-        <div class="col-2"></div>
-        <div class="card border-dark col-5">
-            <form action="register" method="POST" id="New-User">
-                <div class="row">
-                    <label for="new-username" style="font-weight: bolder;">Username:</label>
-                    <input type="text" name="new-username" id="new-username-field" class="new-user-field" placeholder="Email">
-                    <label for="new-password" style="font-weight: bolder;">Password:</label>
-                    <input type="password" name="new-password" id="new-password-field" class="new-user-field" placeholder="Password">
+        <div class="container">
+            <div class="row">
+                <div class="col-5" style="background-color: transparent;">
+                    <form action="/login" method="POST" id="Log-In" >
+                        
+                        <div class="row"> 
+                            <label for="username-field" style="font-weight: bolder;">Username:</label>
+                            <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email"> 
+                        </div>
+                        <div class="row">
+                            <label for="password-field" style="font-weight: bolder;">Password:</label>
+                            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+                        </div>
+                        
+                        <input type="submit" class="btn btn-primary" value="Login" id="login-form-submit" style="font-weight: bolder; margin-top: 1em;">
+                        
+                        
+                    </form>
                 </div>
-                <div class="row">
-                    <label for="fname" style="font-weight: bolder;">First Name:</label>
-                    <input type="text" name="fname" id="new-fname-field" class="new-user-field" placeholder="First Name">
-                    <label for="lname" style="font-weight: bolder;">Last Name:</label>
-                    <input type="text" name="lname" id="new-lname-field" class="new-user-field" placeholder="Last Name">
+                <div class="col-2"></div>
+                <div class="col-5" style="background-color: transparent;">
+                    <form action="register" method="POST" id="New-User">
+                        <div class="row">
+                            <div class="col">
+                                <label for="new-username-field" style="font-weight: bolder;">Username:</label>
+                                <input type="text" name="new-username" id="new-username-field" class="new-user-field" placeholder="Email">
+                            </div>
+                            <div class="col">
+                                <label for="new-password-field" style="font-weight: bolder;">Password:</label>
+                                <input type="password" name="new-password" id="new-password-field" class="new-user-field" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="new-fname-field" style="font-weight: bolder;">First Name:</label>
+                                <input type="text" name="fname" id="new-fname-field" class="new-user-field" placeholder="First Name">
+                            </div>
+                            <div class="col">
+                                <label for="new-lname-field" style="font-weight: bolder;">Last Name:</label>
+                                <input type="text" name="lname" id="new-lname-field" class="new-user-field" placeholder="Last Name">
+                            </div>
+                        </div>
+                        
+                        
+                        <input type="submit" class="btn btn-primary" value="Create Account" id="new-user-submit" style="font-weight: bolder; margin-top: 1em;">
+                        
+                        
+                    </form>
                 </div>
-                
-                <div class="row">
-                    <input type="submit" class="btn btn-primary" value="Create" id="new-user-submit" style="font-weight: bolder;">
-                </div>
-                
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+    
 
+    
+</div>
 
 {% endblock %}
