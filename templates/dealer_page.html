@@ -5,29 +5,45 @@
 <div class="text-center">
     <h1>Dealer Page</h1>
 </div> 
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6">
+            <div style="font-weight: bolder; color: black;">All time sales: {{total_sales}}</div>
+            <div style="font-weight: bolder; color: black;">Dealer Info</div>
+            <div style="font-weight: bolder; color: black;">Monthly Top Sellers</div>
+            <div>
+                <ol>
+                    {% for item in top3 %}
+                    <li style="font-weight: bolder; color: black;">{{item[0]}} {{item[1]}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        
+        <div class="col-6">
+            <div style="font-weight: bolder; color: black;">Total monthly sales: {{month_sales}}</div>
+            <canvas id="dealer-sales" style="background-color:transparent"></canvas>
+        </div>
+    </div>
+
+</div>
 
 <div class="container-fluid">
     <div class="row">
+       
         <div class="col-6">
             <div>Dealer location</div>
-            <div id="dealer-map" style="height: 300px; width: 300px;"></div>
+            <div id="dealer-map" class="container-fluid" style="height: 95%; width: 100%;"></div>
         </div>
         <div class="col-6">
             <div>Dealer Picture</div>
-            <img src="https://www.group1auto.com/images/dealership/location/bmwofmobile-location.jpg" height="300px" width="300px" alt="">
+            <img class="img-fluid" src="https://www.group1auto.com/images/dealership/location/bmwofmobile-location.jpg" height="300px" width="100%" alt="">
 
         </div>
 
     </div>
 
-</div>
-<div style="font-weight: bolder; color: black;">Dealer Info</div>
-<div style="font-weight: bolder; color: black;">Top salespeople</div>
-<div style="font-weight: bolder; color: black;">All time sales: {{total_sales}}</div>
-<div style="font-weight: bolder; color: black;">Total monthly sales: {{month_sales}}</div>
-<div class="col-6">
-    <canvas id="dealer-sales" style="background-color:transparent"></canvas>
-</div>
 
 <script src="/static/js/dealerChart.js"></script>
 <script>

@@ -23,8 +23,24 @@ def dealer_page():
     t_sales = len(total_sales_list)
     m_sales = len(sales_this_month_list)
     api_k = os.environ['API_KEY']
+    sp_sales = {}
+    sp_and_sales=[]
+    for sale in sales_this_month_list:
+        sp_id= sale.sales_person_id
+        sp = crud.get_salesperson_by_id(sp_id)
 
-    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales, the_key=api_k)
+        if sp.fname not in sp_sales.keys():
+            sp_sales[sp.fname] = 1
+        else:
+            sp_sales[sp.fname] += 1
+
+    for key in sp_sales:
+        sp_and_sales.append((key, sp_sales[key]))
+    
+    sp_and_sales.sort(key=lambda x:x[1], reverse=True)
+
+
+    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales, the_key=api_k, top3=sp_and_sales)
 
 @app.route("/user_dashboard")
 def user_dashboard():
