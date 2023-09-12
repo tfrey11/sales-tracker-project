@@ -13,6 +13,7 @@ fetch('/sales_this_month_user.json')
                 label: 'Sales This Month',
                 data,
                 fill: false,
+                spanGaps: 1000 * 60 * 60 * 24
                 
             }],
         },
@@ -23,14 +24,39 @@ fetch('/sales_this_month_user.json')
             },
             elements: {
                 line: {
+                    borderColor: "black", 
                     
                 },
+            },
+            plugins: {
+                legend: {
+                    display:false,
+                },
+                title: {
+                    display: true,
+                    text: 'Monthly Sales',
+                    color: 'black',
+                    font: {
+                        size: '20rem'
+                    }
+                }
             },
 
             scales: {
                 y:{
                     type: 'linear',
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid:{
+                        color: 'white',
+                        
+                    },
+                    ticks: {
+                        color: 'black',
+                        font: {
+                            weight: 'bolder',
+                            size: '15rem'
+                        }
+                    }
                 },
 
                 x: {
@@ -39,6 +65,16 @@ fetch('/sales_this_month_user.json')
                     time: {
                         tooltipFormat: 'LLLL dd', unit: 'day',
                     },
+                    grid: {
+                        color: 'white',
+                    },
+                    ticks: {
+                        color: 'black',
+                        font: {
+                            weight: 'bolder',
+                            size: '15rem'
+                        }
+                    }
                 }
                     
             },

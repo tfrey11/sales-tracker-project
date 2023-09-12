@@ -3,21 +3,24 @@
 
 {% block body %}
 <div class="text-center">
-    <h1>Dealer Page</h1>
+    <h1>Mobile BMW</h1>
 </div> 
 <div class="container-fluid">
     <div class="row">
 
         <div class="col-6">
-            <div style="font-weight: bolder; color: black;">All time sales: {{total_sales}}</div>
-            <div style="font-weight: bolder; color: black;">Dealer Info</div>
-            <div style="font-weight: bolder; color: black;">Monthly Top Sellers</div>
             <div>
-                <ol>
+                <h2 style="font-weight: bolder; color: black;"> <u>All Time Sales:</u> {{total_sales}}</h2>
+            </div>
+            <div class="text-center mt-5">
+                <h4 style="font-weight: bolder; color: black;"><u>Monthly Top Sellers</u></h4>
+            </div>
+            <div>
+                <ul class="text-center" style="list-style: none;">
                     {% for item in top3 %}
                     <li style="font-weight: bolder; color: black;">{{item[0]}} {{item[1]}}</li>
                     {% endfor %}
-                </ol>
+                </ul>
             </div>
         </div>
         

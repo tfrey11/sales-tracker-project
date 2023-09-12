@@ -3,7 +3,6 @@
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from model import db, Salesperson, Sale, Customer, connect_to_db
 from datetime import date
-from operator import itemgetter
 import os
 import crud
 from jinja2 import StrictUndefined

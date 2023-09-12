@@ -8,31 +8,51 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-            <h2>Total Sales : {{sales}} </h2>
-            <h2>Sales This Month: {{monthly_sales}}</h2>
-            <canvas id="month_sales_chart" style="background-color:whitesmoke"></canvas>
-        </div>
-        <div class="col-6">
-            <div class="row">
-                <form action="/create_customer" id="customer_form" method="POST">
-                    <input type="text" name="customer_fname" placeholder="Customer's First Name">
-                    <input type="text" name="customer_lname" placeholder="Customer's Last Name">
-                    <input type="text" name="customer_email" placeholder="Customer's Email">
-                    <input type="text" name="customer_pnumber" placeholder="000-000-0000">
-                    <input type="submit" value="New Customer" id="log_customer">
-                </form>
+
+            <div class="row">           
+                <div class="col">
+                    <h2>Sales This Month: {{monthly_sales}}</h2>
+                </div>
+                <div class="col-auto">
+                    <h2>Total Sales : {{sales}} </h2>
+                </div>
             </div>
-            <div class="row">
-                <form action="/create_sale" id="sale_form" method="POST">
-                    <input type="email" name="customer_email" placeholder="Customer Email">
-                    <input type="text" name="car_make" placeholder="Car Make">
-                    <input type="text" name="car_model" placeholder="Car Model">
-                    <input type="text" name="car_year" placeholder="Year">
-                    <input type="text" name="price" placeholder="Selling Price">
-                    <input type="date" name="date" placeholder="Date">
-                    <input type="submit" value="New Sale" id="log_sale">
+            <canvas id="month_sales_chart" style="background-color: transparent"></canvas>
+        </div>
+
+        <div class="col-6">
+            <div class="row m-5">
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#customer-form" aria-expanded="false" aria-controls="collapseExample">
+                    New Customer
+                </button>
+                <div class="collapse" id="customer-form">
+                    <form action="/create_customer" id="customer_form" method="POST">
+                        <input type="text" name="customer_fname" placeholder="Customer's First Name">
+                        <input type="text" name="customer_lname" placeholder="Customer's Last Name">
+                        <input type="text" name="customer_email" placeholder="Customer's Email">
+                        <input type="text" name="customer_pnumber" placeholder="000-000-0000">
+                        <input type="submit" class="btn btn-primary btn-sm" value="New Customer" id="log_customer">
+                    </form>
+                </div>
                 
-                </form>
+            </div>
+            <div class="row m-5">
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#sale-form" aria-expanded="false" aria-controls="collapseExample">
+                    New Sale
+                </button>
+                <div class="collapse" id="sale-form">
+                    <form action="/create_sale" id="sale_form" method="POST">
+                        <input type="email" name="customer_email" placeholder="Customer Email">
+                        <input type="text" name="car_make" placeholder="Car Make">
+                        <input type="text" name="car_model" placeholder="Car Model">
+                        <input type="text" name="car_year" placeholder="Year">
+                        <input type="text" name="price" placeholder="Selling Price">
+                        <input type="date" name="date" placeholder="Date">
+                        <input type="submit" class="btn btn-primary btn-sm" value="New Sale" id="log_sale">
+                    
+                    </form>
+                </div>
+                
             </div>
         </div>
 

@@ -11,6 +11,7 @@ fetch('/sales_this_month_dealer.json')
                 label: 'Dealer Sales This Month',
                 data,
                 fill: false,
+                spanGaps: 1000 * 60 * 60 * 24
                 
             }],
         },
@@ -21,7 +22,7 @@ fetch('/sales_this_month_dealer.json')
             },
             elements: {
                 line: {
-                    borderColor: "black",
+                    borderColor: "green",
                 },
             },
             plugins:{
@@ -49,7 +50,8 @@ fetch('/sales_this_month_dealer.json')
                     ticks:{
                         color:'black',
                         font:{
-                            weight: 'bolder'
+                            weight: 'bolder',
+                            size: '15rem'
                         }
                     }
                 },
@@ -67,6 +69,7 @@ fetch('/sales_this_month_dealer.json')
                         color:'black',
                         font:{
                             weight: 'bolder',
+                            size: '15rem'
                         }
 
                     }
