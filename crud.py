@@ -57,6 +57,10 @@ def create_customer(fname, lname, email, pnumber):
     return n_customer
 
 
+def get_all_customers():
+    """return list of all customers"""
+    return Customer.query.all()
+
 def get_customer_by_id(c_id):
     """Return customer by id"""
 

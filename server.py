@@ -111,7 +111,7 @@ def logout():
 
 @app.route("/create_sale", methods=["POST"])
 def create_sale():
-    c_email = request.form.get("customer_email")
+    c_email = request.form.get("email-dropdown")
     cus= crud.get_customer_id(c_email)
     seller = crud.get_salesperson_by_username(session["sp_email"])
     make = request.form.get("car_make")
@@ -140,6 +140,7 @@ def create_customer():
     flash("Customer added")
 
     return redirect("/user_dashboard")
+
     
 @app.route("/sales_this_month_user.json")
 def get_sales_this_month():
@@ -166,6 +167,7 @@ def get_sales_this_month():
 
     return jsonify({'data': monthly_sales_list})
 
+
 @app.route("/sales_this_month_dealer.json")
 def dealer_sales():
     dealer_sales = crud.get_dealer_sales()
@@ -183,6 +185,18 @@ def dealer_sales():
     monthly_sales_list.sort(key= lambda x:x['date'])
 
     return jsonify({'data': monthly_sales_list})
+
+
+@app.route("/get_customers.json")
+def get_customers():
+    customers = crud.get_all_customers()
+    email_list = []
+    for customer in customers:
+        email_list.append(customer.customer_email)
+    
+    email_list.sort()
+
+    return jsonify(email_list)
 
 
 if __name__ == "__main__":

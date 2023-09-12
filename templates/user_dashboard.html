@@ -27,10 +27,18 @@
                 </button>
                 <div class="collapse" id="customer-form">
                     <form action="/create_customer" id="customer_form" method="POST">
-                        <input type="text" name="customer_fname" placeholder="Customer's First Name">
-                        <input type="text" name="customer_lname" placeholder="Customer's Last Name">
-                        <input type="text" name="customer_email" placeholder="Customer's Email">
-                        <input type="text" name="customer_pnumber" placeholder="000-000-0000">
+                        <div class="mb-3 mt-3">
+                            <input type="text" name="customer_fname" placeholder="Customer's First Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="customer_lname" placeholder="Customer's Last Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="customer_email" placeholder="ex123@something.com">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="customer_pnumber" placeholder="000-000-0000">
+                        </div>
                         <input type="submit" class="btn btn-primary btn-sm" value="New Customer" id="log_customer">
                     </form>
                 </div>
@@ -42,12 +50,27 @@
                 </button>
                 <div class="collapse" id="sale-form">
                     <form action="/create_sale" id="sale_form" method="POST">
-                        <input type="email" name="customer_email" placeholder="Customer Email">
-                        <input type="text" name="car_make" placeholder="Car Make">
-                        <input type="text" name="car_model" placeholder="Car Model">
-                        <input type="text" name="car_year" placeholder="Year">
-                        <input type="text" name="price" placeholder="Selling Price">
-                        <input type="date" name="date" placeholder="Date">
+                        <div class="mb-3 mt-3">
+                            <select name="email-dropdown" id="email-dropdown" class="form-select">
+
+                            </select>
+                            <!-- <input type="email" name="customer_email" placeholder="Customer Email"> -->
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="car_make" placeholder="Car Make">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="car_model" placeholder="Car Model">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="car_year" placeholder="Year">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="price" placeholder="Selling Price">
+                        </div>
+                        <div class="mb-3">
+                            <input type="date" name="date" placeholder="Date">
+                        </div>
                         <input type="submit" class="btn btn-primary btn-sm" value="New Sale" id="log_sale">
                     
                     </form>
@@ -66,6 +89,7 @@
         <canvas id="month_sales_chart"></canvas>
     </div>
 </div>   -->
+    <script src="/static/js/customerDropdown.js"></script>
     <script src="/static/js/userChart.js"></script>
 
 {% endblock %}
