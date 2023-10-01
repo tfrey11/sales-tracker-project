@@ -15,6 +15,8 @@ class Salesperson(db.Model):
     lname = db.Column(db.String)
     username = db.Column(db.String)
     password = db.Column(db.String)
+    work_number = db.Column(db.String)
+    profile_url = db.Column(db.String, nullable=True)
 
     sales = db.relationship("Sale", back_populates="salesperson")
 
