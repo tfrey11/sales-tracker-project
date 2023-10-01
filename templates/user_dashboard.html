@@ -8,14 +8,16 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-6">
-
-            <div class="row">           
+            <div class="row">  
                 <div class="col">
-                    <h2>Sales This Month: {{monthly_sales}}</h2>
-                </div>
-                <div class="col-auto">
+                    <img class="img-fluid img-thumbnail" src="{{ user.profile_url }}" height="auto" max-width="100%" >
+                </div>         
+                <div class="col-9">
                     <h2>Total Sales : {{sales}} </h2>
                 </div>
+            </div>
+            <div class="col">
+                <h2>Sales This Month: {{monthly_sales}}</h2>
             </div>
             <canvas id="month_sales_chart" style="background-color: transparent"></canvas>
         </div>
@@ -77,9 +79,24 @@
                 </div>
                 
             </div>
+            <div class="row m-5">
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#pic-form" aria-expanded="false" aria-controls="collapseExample">
+                    New Profile Pic
+                </button>
+                <div class="collapse" id="pic-form">
+                    <form action="/post-picture-data" method="POST" enctype="multipart/form-data" id="pic-form">
+                        <div class="mb-3 mt-3">
+                            <input type="file" name="pic-file" class="btn btn-secondary btn-sm">
+                            <input type="submit" class="btn btn-primary btn-sm">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
         </div>
 
     </div>
+    
 </div>
 
 
