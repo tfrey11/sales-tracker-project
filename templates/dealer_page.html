@@ -22,6 +22,15 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div>
+                <ul style="list-style: none;">
+                    {% for employee in employees %}
+                    <li>
+                        {{employee.fname}} {{employee.lname}} : {{employee.username}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
         
         <div class="col-6">

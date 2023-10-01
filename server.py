@@ -11,14 +11,20 @@ app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
 app.jinja_env.undefined = StrictUndefined
 
+
 @app.route("/")
 def homepage():
-    return render_template("homepage.html")
+    if session:
+        sesh = True
+    else:
+        sesh = False
+    return render_template("homepage.html", sesh= sesh)
 
 @app.route("/dealer_page")
 def dealer_page():
     total_sales_list = crud.get_sales()
     sales_this_month_list = crud.get_dealer_sales()
+    employees_list = crud.get_salespeople()
     t_sales = len(total_sales_list)
     m_sales = len(sales_this_month_list)
     api_k = os.environ['API_KEY']
@@ -38,8 +44,13 @@ def dealer_page():
     
     sp_and_sales.sort(key=lambda x:x[1], reverse=True)
 
+    if session:
+        sesh = True
+    else:
+        sesh = False
 
-    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales, the_key=api_k, top3=sp_and_sales)
+
+    return render_template("dealer_page.html", total_sales = t_sales, month_sales = m_sales, the_key=api_k, top3=sp_and_sales, sesh=sesh, employees = employees_list)
 
 @app.route("/user_dashboard")
 def user_dashboard():
@@ -58,8 +69,13 @@ def user_dashboard():
         sales_total = 0
         for sale in sales_list:
             sales_total +=1
+        if session:
+            sesh = True
+        else:
+            sesh = False
+    
 
-        return render_template("user_dashboard.html", user = salesperson, sales= sales_total, monthly_sales = month_sales)
+        return render_template("user_dashboard.html", user = salesperson, sales= sales_total, monthly_sales = month_sales, sesh = sesh)
  
 
     
@@ -124,7 +140,7 @@ def create_sale():
     db.session.add(new_sale)
     db.session.commit()
     flash("New Sale Added!")
-    return redirect("user_dashboard")
+    return redirect("/user_dashboard")
 
 
 @app.route("/create_customer", methods=["POST"])
