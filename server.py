@@ -6,11 +6,15 @@ from datetime import date
 import os
 import crud
 from jinja2 import StrictUndefined
+import cloudinary.uploader
+
 
 app = Flask(__name__)
 app.secret_key = os.environ['SECRET_KEY']
 app.jinja_env.undefined = StrictUndefined
-
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
+CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
+CLOUD_NAME = "dq9bo1no9"
 
 @app.route("/")
 def homepage():
@@ -214,6 +218,20 @@ def get_customers():
 
     return jsonify(email_list)
 
+@app.route("/post-picture-data", methods=["POST"])
+def process_picture():
+    pic_file = request.files['pic-file']
+    salesperson = crud.get_salesperson_by_username(session["sp_email"])
+    result = cloudinary.uploader.upload(pic_file,
+                                        api_key=CLOUDINARY_KEY,
+                                        api_secret=CLOUDINARY_SECRET,
+                                        cloud_name=CLOUD_NAME)
+    pic_url = result['secure_url']
+    salesperson.profile_url=pic_url
+    db.session.commit()
+    
+
+    return redirect("/user_dashboard")
 
 if __name__ == "__main__":
     connect_to_db(app)
