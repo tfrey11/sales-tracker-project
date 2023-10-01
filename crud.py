@@ -2,7 +2,8 @@
 
 from datetime import datetime, date
 from model import db, Salesperson, Sale, Customer, connect_to_db
-from sqlalchemy import func
+from sqlalchemy import func, update
+from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 
 
 def create_salesperson(first_name, last_name, email, pword,):
@@ -11,7 +12,7 @@ def create_salesperson(first_name, last_name, email, pword,):
 
     return salesperson
 
-
+    
 def get_salespeople():
     """return all salespeople"""
 
