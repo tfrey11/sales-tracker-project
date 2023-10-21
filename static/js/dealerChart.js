@@ -22,7 +22,7 @@ fetch('/sales_this_month_dealer.json')
             },
             elements: {
                 line: {
-                    borderColor: "green",
+                    borderColor: "black",
                 },
             },
             plugins:{
@@ -44,7 +44,7 @@ fetch('/sales_this_month_dealer.json')
                     type: 'linear',
                     beginAtZero: true,
                     grid:{
-                        color:'white',
+                        color:'black',
                         tickColor:'black'
                     },
                     ticks:{
@@ -52,7 +52,8 @@ fetch('/sales_this_month_dealer.json')
                         font:{
                             weight: 'bolder',
                             size: '15rem'
-                        }
+                        },
+                        precision: 0
                     }
                 },
 
@@ -63,7 +64,7 @@ fetch('/sales_this_month_dealer.json')
                         tooltipFormat: 'LLLL dd', unit: 'day',
                     },
                     grid:{
-                        color:'white'
+                        color:'black'
                     },
                     ticks:{
                         color:'black',

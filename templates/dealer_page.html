@@ -3,7 +3,7 @@
 
 {% block body %}
 <div class="text-center">
-    <h1>Mobile BMW</h1>
+    <h1 style="font-family: Josefin Sans;">Mobile BMW</h1>
 </div> 
 <div class="container-fluid">
     <div class="row">
@@ -23,6 +23,7 @@
                 </ul>
             </div>
             <div>
+                <h5> Sales Associates:</h5>
                 <ul style="list-style: none;">
                     {% for employee in employees %}
                     <li>
@@ -35,7 +36,7 @@
         
         <div class="col-6">
             <div style="font-weight: bolder; color: black;">Total monthly sales: {{month_sales}}</div>
-            <canvas id="dealer-sales" style="background-color:transparent"></canvas>
+            <canvas id="dealer-sales" style="background-color:aliceblue; opacity:0.6;"></canvas>
         </div>
     </div>
 

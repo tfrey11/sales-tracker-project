@@ -47,15 +47,16 @@ fetch('/sales_this_month_user.json')
                     type: 'linear',
                     beginAtZero: true,
                     grid:{
-                        color: 'white',
+                        color: 'black',
                         
                     },
                     ticks: {
                         color: 'black',
                         font: {
                             weight: 'bolder',
-                            size: '15rem'
-                        }
+                            size: '15rem',
+                        },
+                        precision: 0
                     }
                 },
 
@@ -66,7 +67,7 @@ fetch('/sales_this_month_user.json')
                         tooltipFormat: 'LLLL dd', unit: 'day',
                     },
                     grid: {
-                        color: 'white',
+                        color: 'black',
                     },
                     ticks: {
                         color: 'black',

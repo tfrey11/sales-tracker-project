@@ -18,8 +18,8 @@
     {% block head %}{% endblock %}
   </head>
   <body style="background-image: url('https://www.bmw-m.com/content/dam/bmw/marketBMW_M/common/topics/magazine-article-pool/2022/wallpaper-update-nov/bmw-3-0-csl-gallery-05.jpg'); background-size: cover;">
-    <nav class="navbar navbar-expand-lg " >
-      <div class="container-fluid" style="background-color: transparent;">
+    <nav class="navbar navbar-expand-lg " style="font-family: Roboto;" >
+      <div class="container-fluid" >
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="color: black;">Sales Tracker</a>
         </div>
@@ -33,7 +33,7 @@
         </ul>
         <div>
           {% if sesh == True %}
-            <button type="button" class="btn btn-sm" id="logout-btn"><a class="nav-link" href="/logout">Log Out</a></button>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="logout-btn" ><a class="nav-link" href="/logout">Log Out</a></button>
           {% endif %}
         </div>
       </div>

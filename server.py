@@ -18,10 +18,10 @@ CLOUD_NAME = "dq9bo1no9"
 
 @app.route("/")
 def homepage():
-    if session:
-        sesh = True
-    else:
+    if not session:
         sesh = False
+    else:
+        sesh = True
     return render_template("homepage.html", sesh= sesh)
 
 @app.route("/dealer_page")
@@ -122,7 +122,12 @@ def register_user():
         db.session.commit()
         flash("Account created! Please login to see your dashboard")
 
-    return redirect('/')
+    if not session:
+        sesh = False
+    else:
+        sesh = True
+
+    return render_template("homepage.html", sesh= sesh)
 
 @app.route("/logout")
 def logout():
